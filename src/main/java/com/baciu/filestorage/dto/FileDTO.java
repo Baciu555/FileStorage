@@ -3,12 +3,14 @@ package com.baciu.filestorage.dto;
 import com.baciu.filestorage.entity.Group;
 import com.baciu.filestorage.entity.User;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 public class FileDTO {
 
     private Long id;

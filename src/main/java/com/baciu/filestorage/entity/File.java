@@ -1,7 +1,6 @@
 package com.baciu.filestorage.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -10,6 +9,9 @@ import java.util.Set;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(exclude = {"user", "groups"})
 @Table(name = "file")
 public class File {
@@ -40,4 +42,9 @@ public class File {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "files")
     private Set<Group> groups = new HashSet<>(0);
+
+    @PrePersist
+    private void setDate() {
+        this.setUploadDate(new Date());
+    }
 }
